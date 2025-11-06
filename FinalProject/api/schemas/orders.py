@@ -4,9 +4,8 @@ from pydantic import BaseModel
 from .order_details import OrderDetail
 
 
-
 class OrderBase(BaseModel):
-    customer_name: str
+    customer_id: int
     description: Optional[str] = None
 
 
@@ -15,7 +14,7 @@ class OrderCreate(OrderBase):
 
 
 class OrderUpdate(BaseModel):
-    customer_name: Optional[str] = None
+    customer_id: Optional[int] = None
     description: Optional[str] = None
 
 
