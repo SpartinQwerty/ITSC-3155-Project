@@ -26,6 +26,8 @@ class MenuUpdate(BaseModel):
     description: Optional[str] = None
 
 
-class Menu(OrderBase):
+class Menu(MenuBase):
     id: int
 
+    class ConfigDict:
+        from_attributes = True

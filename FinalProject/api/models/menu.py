@@ -8,11 +8,11 @@ class Menu(Base):
     __tablename__ = "menu"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    dish = Column(String)
-    ingredients = Column(String)
-    price = Column(DECIMAL)
-    calories = Column(DECIMAL)
-    category = Column(String)
+    dish = Column(String(100))
+    ingredients = Column(String(500))
+    price = Column(DECIMAL(10, 2))
+    calories = Column(DECIMAL(10, 2))
+    category = Column(String(50))
     description = Column(String(300))
 
     # Relationships
