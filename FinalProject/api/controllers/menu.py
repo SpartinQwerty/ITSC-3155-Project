@@ -10,7 +10,8 @@ def create(db: Session, request):
         price=request.price,
         calories=request.calories,
         category=request.category,
-        description=request.description
+        description=request.description,
+        is_vegetarian=request.is_vegetarian
     )
     try:
         db.add(new_menu)

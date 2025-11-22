@@ -14,6 +14,4 @@ class Menu(Base):
     calories = Column(DECIMAL(10, 2))
     category = Column(String(50))
     description = Column(String(300))
-
-    # Relationships
-    #Will implement in part 3
+    is_vegetarian = Column(Boolean, default=False)
