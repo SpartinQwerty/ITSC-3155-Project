@@ -11,6 +11,7 @@ class MenuBase(BaseModel):
     calories: float
     category: str
     description: Optional[str] = None
+    is_vegetarian: Optional[bool] = None
 
 
 class MenuCreate(MenuBase):
@@ -24,8 +25,10 @@ class MenuUpdate(BaseModel):
     calories: Optional[float]
     category: Optional[str]
     description: Optional[str] = None
+    is_vegetarian: Optional[bool] = None
 
-
-class Menu(OrderBase):
+class Menu(MenuBase):
     id: int
 
+    class ConfigDict:
+        from_attributes = True

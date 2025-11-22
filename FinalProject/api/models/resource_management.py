@@ -4,7 +4,7 @@ from datetime import datetime
 from ..dependencies.database import Base
 
 class ResourceManagement(Base):
-    __tablename__ = "resources"
+    __tablename__ = "resources_management"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     ingredient = Column(String(100), unique=True, nullable=False)

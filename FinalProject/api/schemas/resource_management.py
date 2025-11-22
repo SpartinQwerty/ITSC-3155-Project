@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
-from .order_details import OrderDetail
 
 class ResourceManagementBase(BaseModel):
     ingredient: str
@@ -10,6 +9,11 @@ class ResourceManagementBase(BaseModel):
 
 class ResourceManagementCreate(ResourceManagementBase):
     pass
+
+class ResourceManagementUpdate(BaseModel):
+    ingredient: Optional[str] = None
+    amount: Optional[int] = None
+    unit: Optional[str] = None
 
 class ResourceManagementRead(ResourceManagementBase):
     id: int
