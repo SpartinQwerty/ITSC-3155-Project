@@ -9,10 +9,10 @@ class Payments(Base):
     customer_name = Column(String(100), ForeignKey("customers.name"), nullable=False)
     payment_type = Column(String(100), nullable=False)
     transaction_status = Column(String(100), nullable=False)
-    card_info = Column(Integer(16), nullable=True)
+    card_info = Column(Integer(), nullable=True)
     card_date = Column(String(10), nullable=True)
-    card_pin = Column(Integer(3), nullable=True)
+    card_pin = Column(Integer(), nullable=True)
 
     #relationships
-    customer = relationship("Customer", back_populates="payments")
+    customers = relationship("Customers", back_populates="payments")
 
