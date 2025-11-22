@@ -4,9 +4,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers import index as indexRoute
 from .models import model_loader
 from .dependencies.config import conf
+from .routers import promotions, resource_management
 
 
 app = FastAPI()
+
+app.include_router(promotions.router)
+app.include_router(resource_management.router)
 
 origins = ["*"]
 
