@@ -3,7 +3,6 @@ from sqlalchemy import func, and_
 from fastapi import HTTPException, status
 from ..models import order_details as order_detail_model
 from ..models import orders as order_model
-from ..models import sandwiches as sandwich_model
 from ..models import reviews as review_model
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime, date
