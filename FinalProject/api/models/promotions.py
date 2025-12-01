@@ -8,6 +8,8 @@ class Promotion(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     promo_code = Column(String(50), unique=True, nullable=False)
+    description = Column(String(255))
+    discount_amount = Column(DECIMAL(10,2), nullable=False)
     expiration_date = Column(DATETIME, nullable=False)
 
     #Relationships

@@ -10,7 +10,9 @@ from ..schemas.promotions import PromotionBase
 def create( db: Session, request: PromotionBase):
     new_item = model.Promotion(
         promo_code=request.promo_code,
-        expiration_date=request.expiration_date
+        expiration_date=request.expiration_date,
+        discount_amount=request.discount_amount,
+        description=request.description
     )
 
     try:
@@ -71,7 +73,12 @@ def apply_promo(db: Session, order_id: int, promo_code: str):
     db.commit()
     db.refresh(order)
 
-    return order
+    return {
+        "order_id": order.id,
+        "promo_code": promo.promo_code,
+        "discount_amount": float(promo.discount_amount),
+        "description": promo.description
+    }
 
 def delete(db: Session, item_id: int):
     try:
