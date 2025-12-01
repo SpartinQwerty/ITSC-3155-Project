@@ -13,7 +13,7 @@ router = APIRouter(
 def create_customer(customer: schema.CustomerCreate, db: Session = Depends(get_db)):
     return controller.create_customer(request=customer, db=db)
 
-@router.get("/", response_model=schema.Customer)
+@router.get("/", response_model=list[schema.Customer])
 def read_all_customers(db: Session = Depends(get_db)):
     return controller.read_all_customers(db=db)
 

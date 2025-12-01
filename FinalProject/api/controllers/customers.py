@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Response, Depends
 from starlette.status import HTTP_400_BAD_REQUEST
 from ..models import customers as model
+from ..models.orders import Order
 from ..schemas.customers import CustomerBase
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -59,7 +60,11 @@ def delete_customer(db: Session, customer_id):
         customer = db.query(model.Customer).filter(model.Customer.id == customer_id).first()
         if not customer:
             raise HTTPException(status_code=404, detail="Customer not found!")
-        customer.delete(synchronize_session=False)
+        orders = db.query(Order).filter(Order.customer_id == customer_id).all()
+        for order in orders:
+            db.delete(order)
+
+        db.delete(customer)
         db.commit()
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
