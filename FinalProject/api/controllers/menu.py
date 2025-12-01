@@ -41,17 +41,19 @@ def read_one(db: Session, menu_id: int):
     return menu_item
 
 def update(db: Session, menu_id: int, request):
-    try:
-        menu_item = db.query(model.Menu).filter(model.Menu.id == menu_id).first()
-        if not menu_item.first():
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
-        update_data = request.dict(exclude_unset=True)
-        menu_item.update(update_data, synchronize_session=False)
-        db.commit()
-    except SQLAlchemyError as e:
-        error = str(e.__dict__['orig'])
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=error)
-    return menu_item.first()
+    menu_query = db.query(model.Menu).filter(model.Menu.id == menu_id)
+    menu_item = menu_query.first()
+
+    if not menu_item:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Id not found!"
+        )
+    update_data = request.dict(exclude_unset=True)
+    menu_query.update(update_data, synchronize_session=False)
+    db.commit()
+
+    return menu_query.first()
 
 def delete(db: Session, menu_id: int):
     try:
