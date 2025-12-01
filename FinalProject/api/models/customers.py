@@ -15,3 +15,4 @@ class Customer(Base):
     # Relationships
     orders = relationship("Order", back_populates="customer")
     reviews = relationship("Review", back_populates="customer")
+    payments = relationship("Payments", back_populates="customer")

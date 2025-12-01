@@ -22,6 +22,7 @@ def create_payment(request: PaymentsBase, db: Session):
         db.add(new_payment)
         db.commit()
         db.refresh(new_payment)
+        return new_payment
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])
         raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail=error)

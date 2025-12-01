@@ -42,11 +42,11 @@ def read_one(db: Session, menu_id: int):
 
 def update(db: Session, menu_id: int, request):
     try:
-        menu_item = db.query(model.Menu).filter(model.Menu.id == menu_id)
-        if not item.first():
+        menu_item = db.query(model.Menu).filter(model.Menu.id == menu_id).first()
+        if not menu_item.first():
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Id not found!")
         update_data = request.dict(exclude_unset=True)
-        item.update(update_data, synchronize_session=False)
+        menu_item.update(update_data, synchronize_session=False)
         db.commit()
     except SQLAlchemyError as e:
         error = str(e.__dict__['orig'])

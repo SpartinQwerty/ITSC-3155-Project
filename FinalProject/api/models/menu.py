@@ -15,3 +15,6 @@ class Menu(Base):
     category = Column(String(50))
     description = Column(String(300))
     is_vegetarian = Column(Boolean, default=False)
+
+    order_details = relationship("OrderDetail", back_populates="dish")
+
