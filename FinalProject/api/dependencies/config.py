@@ -3,6 +3,6 @@ class conf:
     db_name = "final_project"
     db_port = 3306
     db_user = "root"
-    db_password = "willber1212"
+    db_password = "rootroot"
     app_host = "localhost"
-    app_port = 8002
+    app_port = 8000
